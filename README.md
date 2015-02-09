@@ -10,3 +10,8 @@ Instead, follow these steps:
 2. Clone this repository: `gits clone
    git@github.com:bocoup/test262-v8-machinery.git`
 3. Get testing!
+
+## License
+
+Copyright (c) 2015 Bocoup  
+Licensed under the MIT Expat license.
