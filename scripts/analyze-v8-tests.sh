@@ -4,15 +4,18 @@ function help() {
   cat <<HELP
 Usage: analyze [V8DIRECTORY]
 Report statistics for ES6 test files in a V8 git repository. If no argument is
-specified, the current working directory will be used.
+specified, this project's local copy will be used.
 HELP
 }
 
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then help; exit; fi
 
+V8_PATH=$(dirname $0)/../v8-git-mirror
 if [ ! -z "$1" ]; then
-	pushd $1
+	V8_PATH=$1
 fi
+
+pushd $V8_PATH
 
 sources="test/mjsunit/es6 test/mjsunit/harmony"
 
@@ -42,6 +45,4 @@ for relative_date in "1 week ago" "1 month ago" "2 months ago"; do
 	echo "    Files Changed: $changed_count"
 done
 
-if [ ! -z "$1" ]; then
-	popd
-fi
+popd
