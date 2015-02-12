@@ -31,5 +31,5 @@ cp $SOURCE_FILE $DESTINATION_FILE
 rm $SOURCE_FILE
 
 if [[ ! $NO_TRANSFORM -eq 1 ]]; then
-  $SCRIPTS_DIR/transform.sh --in-place $DESTINATION_FILE
+  $SCRIPTS_DIR/transform.js --in-place $DESTINATION_FILE
 fi

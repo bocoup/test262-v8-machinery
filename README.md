@@ -9,9 +9,11 @@ This repository serves as a superproject to Bocoup's forks of V8 and Test262.
 Because of this, the repo shouldn't be cloned using `git clone` directly.
 Instead, follow these steps:
 
-1. Install `git-slave`: http://gitslave.sourceforge.net/
-2. Clone this repository: `gits clone
+1. Install [Node.js](https://nodejs.org/)
+2. Install `git-slave`: http://gitslave.sourceforge.net/
+3. Clone this repository: `gits clone
    git@github.com:bocoup/test262-v8-machinery.git`
+4. Install Node.js modules: `npm install`
 
 ## Workflow
 
