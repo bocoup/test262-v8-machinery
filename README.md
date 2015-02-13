@@ -21,16 +21,20 @@ Use the `gits` wrapper and a few simple Bash scripts to synchronize changes
 across the V8 and Test262 projects.
 
 1. Create a migration branch.
-
-      $ gits checkout -b migration-twenty-three
+  
+  ```sh
+  $ gits checkout -b migration-twenty-three
+  ```
 
 2. Use the `scripts/migrate.sh` executable to move a test file from the V8
    project into the Test262 project. This will automatically apply some simple
    transformations necessary to run the tests in the Test262 harness.
 
-      $ ./scripts/migrate.sh \
-          v8-git-mirror/test/mjsunit/es6/json.js \
-          test262/test/built-ins/JSON/new-stuff.js
+  ```sh
+  $ ./scripts/migrate.sh \
+      v8-git-mirror/test/mjsunit/es6/json.js \
+      test262/test/built-ins/JSON/new-stuff.js
+  ```
 
 3. Update the new test file to fit more naturally in the Test262 test suite.
    This can be done with any editor and may include:
@@ -40,16 +44,22 @@ across the V8 and Test262 projects.
    - re-factoring the tests to span multiple files
 
 4. Add the changes from each sub-project.
-
-      $ gits add --all .
+  
+  ```sh
+  $ gits add --all .
+  ```
 
 4. Commit the changes.
 
-      $ ./scripts/commit.sh
+  ```sh
+  $ ./scripts/commit.sh
+  ```
 
 5. Publish your work!
-
-     $ gits push origin migration-twenty-three
+  
+  ```sh
+  $ gits push origin migration-twenty-three
+  ```
 
 ## License
 
