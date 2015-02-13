@@ -6,7 +6,7 @@ var transform = require('./transform/index');
 var firstArg = process.argv[2];
 var inPlace = false;
 var usage = [
-  'Usage: transform.sh [-i, --in-place] TESTFILE',
+  'Usage: transform.js [-i, --in-place] TESTFILE',
   'Translate the V8 unit test TESTFILE into a Test262-compatable format. The',
   'result will be printed to standard out unless the "in-place" flag is ',
   'present.'

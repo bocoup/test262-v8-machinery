@@ -8,7 +8,7 @@ function help() {
   cat <<HELP
 Usage: migrate.sh [--no-transform] SOURCE_FILE DESTINATION_FILE
 Move the SOURCE_FILE to DESTINATION_FILE, applying the transformation described
-by this project's "transform.sh" script.
+by this project's "transform.js" script.
 HELP
 }
 
