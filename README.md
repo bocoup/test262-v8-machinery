@@ -13,7 +13,7 @@ Instead, follow these steps:
 2. Install `git-slave`: http://gitslave.sourceforge.net/
 3. Clone this repository: `gits clone
    git@github.com:bocoup/test262-v8-machinery.git`
-4. Install Node.js modules: `npm install`
+4. Run the `bin/init.sh` script
 
 ## Workflow
 
@@ -72,27 +72,7 @@ across the V8 and Test262 projects.
 - [V8](https://github.com/v8/v8-git-mirror/)
   + via Homebrew: `brew install v8`
 
-
-## Useful
-
-When using `gits`, it's helpful to have coordinated remotes: 
-
-```sh
-cd test262/;
-git remote add origin git@github.com:bocoup/test262.git;
-git remote add upstream git@github.com:tc39/test262.git;
-cd  ..;
-cd v8-git-mirror/;
-git remote add origin git@github.com:bocoup/v8-git-mirror.git;
-git remote add upstream git@github.com:v8/v8-git-mirror.git;
-cd ..;
-git remote add origin git@github.com:bocoup/test262-v8-machinery.git;
-git remote add upstream git@github.com:bocoup/test262-v8-machinery.git;
-```
-
-This will allow convenient syncing: 
-
-Eg. 
+Sync at any time:
 
 ```sh
 gits pull --rebase upstream master
