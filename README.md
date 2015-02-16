@@ -64,14 +64,13 @@ across the V8 and Test262 projects.
 ## Runtimes
 
 - [io.js](https://iojs.org/en/index.html)
-  + `brew install iojs`
+  + via Homebrew: `brew install iojs`
 - [Node.js](http://nodejs.org/)
-  + `brew install node`
+  + via Homebrew: `brew install node`
+  + via Apt: `apt-get install nodejs`
 - [SpiderMonkey](http://ftp.mozilla.org/pub/mozilla.org/firefox/nightly/latest-trunk/)
 - [V8](https://github.com/v8/v8-git-mirror/)
-  + `brew install v8`
-
-
+  + via Homebrew: `brew install v8`
 
 ## License
 
