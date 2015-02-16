@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 SCRIPTS_DIR=$(dirname $0)
 
 function help() {
@@ -28,8 +26,20 @@ if [[ "$SOURCE_FILE" == "" || "$DESTINATION_FILE" == "" ]]; then
 fi
 
 cp $SOURCE_FILE $DESTINATION_FILE
-rm $SOURCE_FILE
+
+if [[ $? -ne 0 ]]; then
+  echo "Error: Couldn't copy $SOURCE_FILE to $DESTINATION_FILE"
+  exit 1;
+fi
 
 if [[ ! $NO_TRANSFORM -eq 1 ]]; then
   $SCRIPTS_DIR/transform.js --in-place $DESTINATION_FILE
+
+  if [[ $? -ne 0 ]]; then
+    echo "Error: Could not transform $SOURCE_FILE"
+    rm $DESTINATION_FILE
+    exit 1;
+  fi
 fi
+
+rm $SOURCE_FILE
