@@ -1,5 +1,7 @@
 'use strict';
 
+var licenseYearPattern = /\bcopyright (\d{4})\b/i;
+
 function makeFrontMatter(ast, dependencies) {
 	var value = [
 		'es6id: ',
@@ -23,6 +25,39 @@ function makeFrontMatter(ast, dependencies) {
 	};
 }
 
+function makeLicense(ast) {
+	var commentText = ast.program.comments.map(function(node) {
+		return node.value;
+	}).join(' ');
+	var match = licenseYearPattern.exec(commentText);
+
+	if (!match) {
+		throw new Error('Could not infer license year.');
+	}
+
+	return [
+		{
+			type: 'Line',
+			value: ' Copyright (C) ' + match[0] + ' the V8 project authors. ' +
+				'All rights reserved.',
+			leading: true,
+			trailing: false
+		},
+		{
+			type: 'Line',
+			value: ' This code is governed by the BSD license found in the ' +
+				'LICENSE file.',
+			leading: true,
+			trailing: false
+		}
+	];
+}
+
 module.exports = function(ast, options) {
-	ast.program.comments.push(makeFrontMatter(ast, options.dependencies));
+	var comments = ast.program.comments;
+	var license = makeLicense(ast);
+	var frontMatter = makeFrontMatter(ast, options.dependencies);
+
+	comments.push.apply(comments, license);
+	comments.push(frontMatter);
 };
