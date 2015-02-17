@@ -1,6 +1,6 @@
 {
   "main": "lib/transform",
   "dependencies": {
-    "recast": "^0.9.18"
+    "recast": "^0.10.0"
   }
 }
