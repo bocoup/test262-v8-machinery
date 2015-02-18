@@ -27,4 +27,4 @@ gits status | sed 's/^/#/' >> $MSG_FILE
 
 $EDITOR $MSG_FILE > `tty` < `tty`
 
-gits commit $QUOTED_ARGS --message "$(cat $MSG_FILE)"
+gits commit $QUOTED_ARGS --message "$(cat $MSG_FILE)" --cleanup strip
