@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 
+set -e
+
+if [[ $EDITOR == "" ]]; then
+  EDITOR=$(git config core.editor)
+fi
+
 # Prepare a commit message that includes a listing of files removed from V8
 MSG_FILE=.git/TEST262_COMMIT_EDITMSG
 
 FILES=$(cd v8-git-mirror; git diff master --name-status | sed 's/^[^D].*$//g' | sed 's/^D\s*//g')
-
 
 cat << EOF > $MSG_FILE
 Import tests from Google V8
@@ -20,7 +25,6 @@ EOF
 
 gits status | sed 's/^/#/' >> $MSG_FILE
 
-EDITOR=$(git config core.editor)
 $EDITOR $MSG_FILE > `tty` < `tty`
 
 gits commit $QUOTED_ARGS --message "$(cat $MSG_FILE)"
