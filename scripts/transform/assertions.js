@@ -4,6 +4,16 @@ var assert = require('assert');
 var recast = require('recast');
 
 var assertions = {
+	assertEquals: function(path) {
+		var args = path.parentPath.value.arguments;
+
+		if (args[0].type === 'Literal' ||
+				(args[0].type === 'Identifier' && args[0].name === 'undefined')) {
+			args.unshift(args.pop());
+		}
+
+		path.value.name = 'assert.sameValue';
+	},
 	assertThrows: function(path) {
 		var args = path.parentPath.value.arguments;
 
@@ -23,7 +33,12 @@ var assertions = {
 		path.value.name = 'assert.sameValue';
 	},
 	assertTrue: function(path) {
-		path.value.name = 'assert';
+		var args = path.parentPath.value.arguments;
+		if (args.length > 1) {
+			args[2] = args[1];
+		}
+		args[1] = recast.types.builders.literal(true);
+		path.value.name = 'assert.sameValue';
 	},
 	assertFalse: function(path) {
 		var args = path.parentPath.value.arguments;

@@ -1,6 +1,7 @@
 {
   "main": "lib/transform",
   "dependencies": {
-    "recast": "^0.10.0"
+    "recast": "^0.10.0",
+    "es6-shim": "latest"
   }
 }
