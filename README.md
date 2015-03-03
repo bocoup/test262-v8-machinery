@@ -43,19 +43,29 @@ across the V8 and Test262 projects.
    - modifying code style
    - re-factoring the tests to span multiple files
 
-4. Add the changes from each sub-project.
+4. Verify the new tests pass:
+
+  ```sh
+  $ ./scripts/run-tests.sh
+
+  # The above assumes V8 has been built in this project's clone of the project.
+  # You may optionally specify a different JavaScript runtime
+  $ ./scripts/run-tests.sh js
+  ```
+
+5. Add the changes from each sub-project.
   
   ```sh
   $ gits add --all .
   ```
 
-4. Commit the changes.
+6. Commit the changes.
 
   ```sh
   $ ./scripts/commit.sh
   ```
 
-5. Publish your work!
+7. Publish your work!
   
   ```sh
   $ gits push origin migration-twenty-three
