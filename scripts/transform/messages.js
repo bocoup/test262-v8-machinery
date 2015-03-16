@@ -73,12 +73,22 @@ var messages = {
 		var args = path.parentPath.value.arguments;
 		var message = new AssertionMessage(args[0], recast.types.builders.literal(true));
 
+		if (args[1]) {
+			return;
+		}
+
 		args[1] = recast.types.builders.literal(message.toString());
 	},
 	sameValue: function(path) {
 
 		var args = path.parentPath.parentPath.value.arguments;
-		var message = new AssertionMessage(args[0], args[1]);
+		var message;
+
+		if (args[2]) {
+			return;
+		}
+
+		message = new AssertionMessage(args[0], args[1]);
 
 		args[2] = recast.types.builders.literal(message.toString());
 	},
