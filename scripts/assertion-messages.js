@@ -7,7 +7,8 @@ var glob = require('glob');
 var usage = [
 	'Usage: assertion-messages.js "globbing expression"',
 	'To generate assertion messages for a set of test files, provide a valid glob expression.',
-	'File search begins at `../test262/test/`'
+	'File search is relative to the `test/` sub-directory of the local',
+	'Test262 repository'
 ].join('\n');
 
 var gexpr = process.argv[2];
@@ -17,7 +18,7 @@ if (!gexpr) {
 	return;
 }
 
-glob('../test262/test/' + gexpr, function(err, list) {
+glob(__dirname + '/../test262/test/' + gexpr, function(err, list) {
 
 	list.forEach(function(file) {
 		var source = fs.readFileSync(file, 'utf8');
