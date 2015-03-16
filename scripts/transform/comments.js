@@ -26,19 +26,27 @@ function makeFrontMatter(ast, dependencies) {
 }
 
 function makeLicense(ast) {
-	var commentText = ast.program.comments.map(function(node) {
-		return node.value;
-	}).join(' ');
-	var match = licenseYearPattern.exec(commentText);
+	var year = new Date().getFullYear();
 
-	if (!match) {
-		throw new Error('Could not infer license year.');
+	if (ast.program.comments) {
+		var commentText = ast.program.comments.map(function(node) {
+			return node.value;
+		}).join(' ');
+
+		var match = licenseYearPattern.exec(commentText);
+
+		if (!match) {
+			throw new Error('Could not infer license year.');
+		}
+
+		year = match[0];
 	}
+
 
 	return [
 		{
 			type: 'Line',
-			value: ' Copyright (C) ' + match[0] + ' the V8 project authors. ' +
+			value: ' Copyright (C) ' + year + ' the V8 project authors. ' +
 				'All rights reserved.',
 			leading: true,
 			trailing: false
@@ -54,7 +62,7 @@ function makeLicense(ast) {
 }
 
 module.exports = function(ast, options) {
-	var comments = ast.program.comments;
+	var comments = ast.program.comments || [];
 	var license = makeLicense(ast);
 	var frontMatter = makeFrontMatter(ast, options.dependencies);
 
